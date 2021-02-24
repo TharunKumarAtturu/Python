@@ -51,11 +51,11 @@ def update():
 				print("Select one option from the below mentioned to update.\n")
 				option = int(input("1. Name\n2. Book\n3. Mobile\nEnter your option: "))
 				if option == 1:
-					libraryList[counter][option] = input("Enter new name: ")
+					libraryList[counter][option] = input("Enter new Name: ")
 				elif option == 2:
-					libraryList[counter][option] = input("Enter new book: ")
+					libraryList[counter][option] = input("Enter new Book: ")
 				elif option == 3:
-					libraryList[counter][option] = input("Enter new mobile: ")
+					libraryList[counter][option] = input("Enter new Mobile number: ")
 				else: 
 					print("No such option available.")
 				with open(DATAFILE, "w") as fileObject:
