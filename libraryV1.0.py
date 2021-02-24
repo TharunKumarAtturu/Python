@@ -1,4 +1,4 @@
-DATAFILE = 'data2.txt'
+DATAFILE = 'data.dat'
 fields = ["Id", "Name", "Book", "Mobile", "Status"]
 menu = ["______Library Management______", "1. Create", "2. Read", "3. Update", "4. Delete", "5. Search", "6. Exit"]
 libraryList = []
@@ -61,7 +61,6 @@ def update():
 		counter += 1
 		if counter == len(libraryList):
 			status = False
-
 	if idFound == 0:
 		print("Id is not found.")
 
@@ -82,11 +81,9 @@ def delete():
 
 				idFound = 1
 				break
-
 		counter += 1
 		if counter == len(libraryList):
 			status = False
-
 	if idFound == 0:
 		print("Id is not found.")
 
@@ -104,14 +101,12 @@ def search():
 				for line in libraryList[counter]:
 					print(line, end = " ")
 				print("\nsearch is successful.")
+
 				idFound = 1
 				break
-				
-				
 		counter += 1
 		if counter == len(libraryList):
 			status = False
-
 	if idFound == 0:
 		print("Id is not found.")
 
@@ -129,10 +124,3 @@ def showMenu():
 
 storeTemporaryList()
 showMenu()
-
-
-
-
-
-
-
