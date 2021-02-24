@@ -1,43 +1,35 @@
 import os
-DATAFILE = 'data.txt'
-fields = ["Id", "Name", "Book", "Mobile", "Status"]
-menu = ["______Library Management______", "1. Create", "2. Read", "3. Update", "4. Delete", "5. Search", "6. Exit"]
+MENU_FILE = "menu.cfg"
+DATAFILE = "data2.txt"
+FIELD_FILE = 'field.cfg'
+fields = eval(open(FIELD_FILE).read())
 libraryList = []
 
 def create():
+	
+	libraryData = []
+	[libraryData.append(input("Enter the " + field + ": "))for field in fields]	
+	libraryList.append(libraryData)
 	with open(DATAFILE, "w") as fileObject:
-		libraryData = []
-		for field in fields:
-			libraryData.append(input("Enter the " + field + ": "))
-		libraryList.append(libraryData)
 		fileObject.write(str(libraryList))
 
 def read():
 	for field in fields:
 		print(field, end = " ")
-	with open(DATAFILE, "r") as fileObject:
-		record = fileObject.read()
-		temporaryList = eval(record)
-		for lines in temporaryList:
-			print("\n")
-			for line in lines:
-				print(line, end = " ")	
+	tempList = eval(open(DATAFILE, "r").read())
+	for lines in tempList:
+		print("\n")
+		for line in lines:
+			print(line, end = " ")
 
 def storeTemporaryList():
 	if os.stat(DATAFILE).st_size == 0:
+		emptyList = []
 		with open(DATAFILE, "w") as fileObject:
-			emptyList = []
 			fileObject.write(str(emptyList))
-
 	else:
-		with open(DATAFILE, "r") as fileObject:
-			records = fileObject.read()
-			if records == None:
-				print("nothing")
-			listFromFile = eval(records)
-			for line in listFromFile:
-				libraryList.append(line)
-
+		[libraryList.append(line) for line in eval(open(DATAFILE).read())]
+		
 
 def update():
 	tempId = input("Enter Id number to update: ")
@@ -48,13 +40,13 @@ def update():
 		if counter < len(libraryList):
 			userId = libraryList[counter][0]
 			if tempId == userId:
-				print("matching successful")
+				print("Match is found")
 				print("Select one option from the below mentioned to update.\n")
 				option = int(input("1. Name\n2. Book\n3. Mobile\nEnter your option: "))
 				if option == 1:
 					libraryList[counter][option] = input("Enter new Name: ")
 				elif option == 2:
-					libraryList[counter][option] = input("Enter new Book: ")
+					libraryList[counter][option] = input("Enter new book: ")
 				elif option == 3:
 					libraryList[counter][option] = input("Enter new Mobile number: ")
 				else: 
@@ -80,7 +72,7 @@ def delete():
 		if counter < len(libraryList):
 			tempId = libraryList[counter][0]
 			if tempId == userId:
-				print("matching successful")
+				print("Match is found")
 				libraryList[counter][4] = "Deleted"
 				with open(DATAFILE, "w") as fileObject:
 					fileObject.write(str(libraryList))
@@ -104,10 +96,10 @@ def search():
 		if counter < len(libraryList):
 			userId = libraryList[counter][0]
 			if tempId == userId:
-				print("matching successful")
+				print("Match is found")
 				for line in libraryList[counter]:
 					print(line, end = " ")
-				print("\nsearch is successful.")
+				print("\nSearch is successful.")
 
 				idFound = 1
 				break
@@ -124,12 +116,8 @@ def exitFromMenu():
 def showMenu():
 	while True:
 		print("\n")
-		for menuLine in menu:
-			print(menuLine)
-
+		print(open("menu.cfg").read())
 		[create, read, update, delete, search, exitFromMenu][int(input("Enter your choice: ")) - 1]()
 
 storeTemporaryList()
 showMenu()
-
-
