@@ -23,13 +23,19 @@ def read():
 				print(line, end = " ")	
 
 def storeTemporaryList():
-	with open(DATAFILE, "r") as fileObject:
-		records = fileObject.read()
-		if records == None:
-			print("nothing")
-		listFromFile = eval(records)
-		for line in listFromFile:
-			libraryList.append(line)
+	if os.stat(DATAFILE).st_size == 0:
+		with open(DATAFILE, "w") as fileObject:
+			emptyList = []
+			fileObject.write(str(emptyList))
+
+	else:
+		with open(DATAFILE, "r") as fileObject:
+			records = fileObject.read()
+			if records == None:
+				print("nothing")
+			listFromFile = eval(records)
+			for line in listFromFile:
+				libraryList.append(line)
 
 
 def update():
