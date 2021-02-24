@@ -1,5 +1,5 @@
 import os
-DATAFILE = 'data.dat'
+DATAFILE = 'data.txt'
 fields = ["Id", "Name", "Book", "Mobile", "Status"]
 menu = ["______Library Management______", "1. Create", "2. Read", "3. Update", "4. Delete", "5. Search", "6. Exit"]
 libraryList = []
@@ -131,3 +131,5 @@ def showMenu():
 
 storeTemporaryList()
 showMenu()
+
+
