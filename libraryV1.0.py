@@ -40,7 +40,6 @@ def update():
 		if counter < len(libraryList):
 			userId = libraryList[counter][0]
 			if tempId == userId:
-				print("Match is found")
 				print("Select one option from the below mentioned to update.\n")
 				option = int(input("1. Name\n2. Book\n3. Mobile\nEnter your option: "))
 				if option == 1:
@@ -72,7 +71,6 @@ def delete():
 		if counter < len(libraryList):
 			tempId = libraryList[counter][0]
 			if tempId == userId:
-				print("Match is found")
 				libraryList[counter][4] = "Deleted"
 				with open(DATAFILE, "w") as fileObject:
 					fileObject.write(str(libraryList))
@@ -96,7 +94,9 @@ def search():
 		if counter < len(libraryList):
 			userId = libraryList[counter][0]
 			if tempId == userId:
-				print("Match is found")
+				for field in fields:
+					print(field, end = " ")
+				print("\n")
 				for line in libraryList[counter]:
 					print(line, end = " ")
 				print("\nSearch is successful.")
