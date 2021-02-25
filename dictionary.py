@@ -5,7 +5,7 @@ app_id = '5b1a043f'
 app_key = '8e784c217d979f4fe09052d2c6bcb71f'
 word_id = input("Enter the word: ")
 
-url = "https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/" + word_id + "?fields=definitions&strictMatch=false"
+url ="https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/" + word_id + "?strictMatch=false"
 response = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key})
 meaning = response.json();
 results = meaning['results']
@@ -17,4 +17,7 @@ temp3 = entries[0]
 senses = temp3['senses']
 temp4 = senses[0]
 definition = temp4['definitions']
+audioFile = entries[0]['pronunciations'][0]['audioFile']
+
 print("Meaning of " + word_id + " : " + str(definition[0]))
+print("pronounciation link for a given word is: " + audioFile)
