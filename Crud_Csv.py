@@ -63,7 +63,8 @@ def showMenu():
 		print("\n")
 		print(open("menu.cfg").read())
 		[create, read, delete, exitFromMenu][int(input("Enter your choice: ")) - 1]()
-
+		
+storeTemporaryList()
 showMenu()		
 
 
