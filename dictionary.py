@@ -17,7 +17,8 @@ temp3 = entries[0]
 senses = temp3['senses']
 temp4 = senses[0]
 definition = temp4['definitions']
-audioFile = entries[0]['pronunciations'][0]['audioFile']
+temp4 = entries[0]['pronunciations']
+audioFile = temp4[0]['audioFile']
 
 print("Meaning of " + word_id + " : " + str(definition[0]))
-print("pronounciation link for a given word is: " + audioFile)
+print("Pronounciation link for a given word is: " + audioFile)
