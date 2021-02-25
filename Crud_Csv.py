@@ -1,5 +1,4 @@
 import csv
-import os
 MENU_FILE = "menu.cfg"
 DATAFILE = "names.csv"
 FIELD_FILE = 'field.cfg'
@@ -14,13 +13,43 @@ def create():
 		writer = csv.writer(csv_file)
 		for line in libraryList:
 			writer.writerow(line)
-		#writer.writerow(libraryList)
 
 def read():
 	with open(DATAFILE, 'r') as csv_file:
 		reader = csv.reader(csv_file)
 		for line in reader:
 			print(line)
+
+def update():
+	tempId = input("Enter the ID to update: ")
+	found = 0
+	counter = -1
+	with open(DATAFILE, 'r') as csv_file:
+		reader = csv.reader(csv_file)
+		for line in reader:
+			counter += 1
+			if line[0] == tempId:
+				print("Select one option from the below mentioned to update.\n")
+				option = int(input("1. Name\n2. Book\nEnter your option: "))
+				if option == 1:
+					libraryList[counter][option] = input("Enter new Name: ")
+				elif option == 2:
+					libraryList[counter][option] = input("Enter new book: ")
+				else: 
+					print("No such option available.")
+				print("Match is found")
+				with open(DATAFILE, 'w', newline = '') as csv_file:
+					writer = csv.writer(csv_file)
+					for line in libraryList:
+						writer.writerow(line)
+
+					found = 1
+					print("Updated successfully")
+					break
+				
+
+		if found == 0:
+			print("No such Id")
 
 def delete():
 	tempId = input("Enter the ID to delete: ")
@@ -37,7 +66,7 @@ def delete():
 					writer = csv.writer(csv_file)
 					for line in libraryList:
 						writer.writerow(line)
-						
+
 					found = 1
 					print("Deleted successfully")
 					break
@@ -62,9 +91,8 @@ def showMenu():
 	while True:
 		print("\n")
 		print(open("menu.cfg").read())
-		[create, read, delete, exitFromMenu][int(input("Enter your choice: ")) - 1]()
-		
+		[create, read, update, delete, exitFromMenu][int(input("Enter your choice: ")) - 1]()
+
 storeTemporaryList()
 showMenu()		
-
 
