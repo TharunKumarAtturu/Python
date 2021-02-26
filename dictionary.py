@@ -1,5 +1,6 @@
 import requests
 import json
+from playsound import playsound
 
 app_id = '5b1a043f'
 app_key = '8e784c217d979f4fe09052d2c6bcb71f'
@@ -21,4 +22,4 @@ temp4 = entries[0]['pronunciations']
 audioFile = temp4[0]['audioFile']
 
 print("Meaning of " + word_id + " : " + str(definition[0]))
-print("Pronounciation link for a given word is: " + audioFile)
+playsound(audioFile)
