@@ -69,7 +69,7 @@ def exitFromMenu():
 
 def showMenu():
 	while True:
-		print("\nChoose one option: ")
+		print("\nChoose a option: ")
 		print(open(MENU_FILE).read())
 		[createTable, addRecord, readRecords, updateRecord, deleteRecord, exitFromMenu][int(input("Enter your choice: ")) - 1]()
 
